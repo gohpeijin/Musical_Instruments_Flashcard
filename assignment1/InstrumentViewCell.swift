@@ -27,13 +27,22 @@ class InstrumentViewCell: UICollectionViewCell {
         if (instrumentName.alpha == 1) {
             UIView.animate(withDuration: 0.2){
                 self.instrumentName.alpha = 0
+                
             }
         }
         else {
             UIView.animate(withDuration: 0.5){
                 self.instrumentName.alpha = 1
+                // auto change to alpha 0 if user no click it after 4 second
+                Timer.scheduledTimer(withTimeInterval: 4, repeats: false){ (_) in
+                    UIView.animate(withDuration: 0.5){
+                        self.instrumentName.alpha = 0
+                    }
+                }
             }
         }
+        
+        
         
     }
     
