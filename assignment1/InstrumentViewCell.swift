@@ -13,16 +13,35 @@ import UIKit
 class InstrumentViewCell: UICollectionViewCell {
 
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var instrumentName: UILabel!
     
     static let identifier = "InstrumentViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        instrumentName.alpha = 0
     }
     
-    public func setImage(_ image : UIImage){
-        imageView.image = image
+    public func flipCell (){
+
+        if (instrumentName.alpha == 1) {
+            UIView.animate(withDuration: 0.2){
+                self.instrumentName.alpha = 0
+            }
+        }
+        else {
+            UIView.animate(withDuration: 0.5){
+                self.instrumentName.alpha = 1
+            }
+        }
+        
     }
+    
+    public func setImage(_ image : UIImage, _ name : String){
+        imageView.image = image
+        instrumentName.text = name
+    }
+    
     
     static func nib() -> UINib {
         return UINib (nibName: "InstrumentViewCell", bundle: nil)

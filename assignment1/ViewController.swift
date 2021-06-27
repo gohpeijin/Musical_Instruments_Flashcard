@@ -30,12 +30,26 @@ class ViewController: UIViewController {
         let instrument3 = instrument(name: "Keyboard Piano", image: "keyboard_piano")
         let instrument4 = instrument(name: "Bongos", image: "bongos")
         let instrument5 = instrument(name: "Violin", image: "violin")
+        let instrument6 = instrument(name: "Saxophone", image: "saxophone")
+        let instrument7 = instrument(name: "Keytar", image: "keytar")
+        let instrument8 = instrument(name: "Harp" ,image: "harp")
+        let instrument9 = instrument(name: "Grand Piano",image: "grand-piano")
+        let instrument10 = instrument(name: "Trumpet", image: "trumpet")
+        let instrument11 = instrument(name: "Drum Set", image: "drum-set")
+        let instrument12 = instrument(name: "Clarinet", image: "clarinet")
         
         tempInstrument.append(instrument1)
         tempInstrument.append(instrument2)
         tempInstrument.append(instrument3)
         tempInstrument.append(instrument4)
         tempInstrument.append(instrument5)
+        tempInstrument.append(instrument6)
+        tempInstrument.append(instrument7)
+        tempInstrument.append(instrument8)
+        tempInstrument.append(instrument9)
+        tempInstrument.append(instrument10)
+        tempInstrument.append(instrument11)
+        tempInstrument.append(instrument12)
         
         return tempInstrument
     }
@@ -63,11 +77,8 @@ extension ViewController : UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        let alertController = UIAlertController(title: "Instrument Name", message: instrumentlist[indexPath.row].name, preferredStyle: .alert)
-        let doneAction = UIAlertAction(title: "Done", style:.default, handler: nil)
-        alertController.addAction(doneAction)
-        self.present(alertController,animated: true,completion: nil)
-        
+        let cell = collectionView.cellForItem(at: indexPath) as! InstrumentViewCell
+        cell.flipCell()
     }
 }
 
@@ -82,7 +93,7 @@ extension ViewController : UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstrumentViewCell.identifier, for: indexPath) as! InstrumentViewCell
         
         let instrument = instrumentlist[indexPath.row]
-        cell.setImage(UIImage(named: instrument.image)!)
+        cell.setImage(UIImage(named: instrument.image)!, instrument.name)
         
         return cell
     }

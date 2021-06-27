@@ -23,12 +23,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FA-nJ-jmd">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="2FA-nJ-jmd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3he-cw-JWY"/>
+                <constraint firstAttribute="bottom" secondItem="2FA-nJ-jmd" secondAttribute="bottom" id="5rk-u9-TSm"/>
+                <constraint firstItem="2FA-nJ-jmd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EjB-v3-BRT"/>
+                <constraint firstAttribute="trailing" secondItem="2FA-nJ-jmd" secondAttribute="trailing" id="RNk-oH-IYi"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="136" height="127"/>
             <connections>
                 <outlet property="imageView" destination="Wn2-fg-4tP" id="rxv-cY-yaP"/>
+                <outlet property="instrumentName" destination="2FA-nJ-jmd" id="0IY-3m-kbp"/>
             </connections>
             <point key="canvasLocation" x="300" y="96"/>
         </collectionViewCell>
