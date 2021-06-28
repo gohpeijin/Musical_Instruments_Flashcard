@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var instrumentCollectionView: UICollectionView!
     
+    @IBOutlet weak var singleView: UIView! // the view of the
+    
     let imageSize = 180
     
     struct instrument {
@@ -20,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     var instrumentlist: [instrument] = []
-    
+    var startindex = 0
     //create instrument and store in the list
     func createArray () -> [instrument] {
         var tempInstrument: [instrument] = []
@@ -69,8 +71,76 @@ class ViewController: UIViewController {
         
         instrumentCollectionView.delegate = self
         instrumentCollectionView.dataSource = self
+        setImage()
+    }
+    
+    @IBOutlet weak var buttonLeft: UIButton!
+    @IBOutlet weak var buttonRight: UIButton!
+    
+    @IBAction func buttonLeft(_ sender: UIButton) {
+        startindex -= 1
+        setImage()
+    }
+    @IBAction func buttonRight(_ sender: UIButton) {
+        startindex += 1
+        setImage()
+    }
+    @IBOutlet weak var imagePlaceholder: UIImageView!
+    
+    @IBOutlet weak var labelCounter: UILabel!
+    func setImage(){
+        instrumentName.alpha = 0
+        imagePlaceholder.image = (UIImage(named: instrumentlist[startindex].image)!)
+        instrumentName.text = instrumentlist[startindex].name
+        labelCounter.text = String(startindex+1)
+        if (startindex == 0){
+           buttonLeft.isHidden = true
+        }
+        else{
+            buttonLeft.isHidden = false
+        }
+        
+        if (startindex == instrumentlist.count-1){
+            buttonRight.isHidden = true
+        }
+        else{
+            buttonRight.isHidden = false
+        }
     }
 
+    @IBOutlet weak var instrumentName: UILabel!
+    @IBAction func buttonToggle(_ sender: UIButton) {
+        if (instrumentName.alpha == 1) {
+            UIView.animate(withDuration: 0.2){
+                self.instrumentName.alpha = 0
+                
+            }
+        }
+        else {
+            UIView.animate(withDuration: 0.5){
+                self.instrumentName.alpha = 1
+                // auto change to alpha 0 if user no click it after 4 second
+                Timer.scheduledTimer(withTimeInterval: 4, repeats: false){ (_) in
+                    UIView.animate(withDuration: 0.5){
+                        self.instrumentName.alpha = 0
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func buttonChangeView(_ sender: UIButton) {
+        if(singleView.isHidden == false){
+            singleView.isHidden = true
+            instrumentCollectionView.isHidden = false
+        }
+        else{
+            singleView.isHidden = false
+            instrumentCollectionView.isHidden = true
+        }
+        
+    }
+    
 }
 
 extension ViewController : UICollectionViewDelegate{
