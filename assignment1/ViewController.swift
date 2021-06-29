@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     
     // to cahnge the view of 1. flashcard mode to 2. collection mode or vise versa
     @IBAction func buttonChangeView(_ sender: UIButton) {
-        if(singleView.isHidden == false){
+        if(singleScrollView.isHidden == false){
             singleScrollView.isHidden = true
             instrumentCollectionView.isHidden = false
         }
